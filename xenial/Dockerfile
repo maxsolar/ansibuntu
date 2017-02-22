@@ -7,6 +7,6 @@ RUN apt-get update -qq && apt-get dist-upgrade -y && \
     apt-get install ansible=2.2.1.0-1ppa~xenial -y && \
     pip install simplejson && \
     apt-get clean all && apt-get autoremove -y && \
-    echo -e '[local]\nlocalhost\n' >> /etc/ansible/hosts
+    echo 'localhost' > /etc/ansible/hosts
 
 CMD ["/bin/bash"]

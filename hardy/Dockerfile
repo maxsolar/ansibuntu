@@ -35,7 +35,7 @@ RUN pip install -U pip simplejson; \
     wget -q http://releases.ansible.com/ansible/ansible-2.2.1.0.tar.gz -O - | tar zxvf - ; \
     cd ansible-2.2.1.0 && make && make install; \
     cd -; rm -rf ansible-2.2.1.0; \
-    mkdir /etc/ansible; echo -e '[local]\nlocalhost\n' > /etc/ansible/hosts; \
+    mkdir /etc/ansible; echo 'localhost' > /etc/ansible/hosts; \
     apt-get clean all && apt-get autoremove -y
     
 CMD ["/bin/bash"]
