@@ -2,7 +2,7 @@ FROM ubuntu:xenial
 MAINTAINER Jim T. Tang<maxubuntu@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -qq && apt-get dist-upgrade -y && \
-    apt-get install software-properties-common wget curl python-pip python-dev -y && \
+    apt-get install aptitude software-properties-common wget curl python-pip python-dev -y && \
     add-apt-repository ppa:ansible/ansible && apt-get update -qq && \
     apt-get install ansible=2.2.1.0-1ppa~xenial -y && \
     pip install simplejson && \

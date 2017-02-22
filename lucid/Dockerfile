@@ -3,8 +3,8 @@ MAINTAINER Jim T. Tang<maxubuntu@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -qq && apt-get dist-upgrade -y && \
-    apt-get install wget curl rsync build-essential ca-certificates \
-        libffi-dev  libbz2-dev zlib1g-dev libreadline5-dev \
+    apt-get install wget curl rsync aptitude build-essential ca-certificates \
+        libffi-dev  libbz2-dev zlib1g-dev libreadline5-dev python-software-properties \
         libncurses5-dev libssl-dev libperl5.10 libsqlite3-dev libgdbm-dev -y
 
 

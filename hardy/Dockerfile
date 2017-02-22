@@ -2,7 +2,7 @@ FROM maxsolar/ubuntu-hardy
 MAINTAINER Jim T. Tang<maxubuntu@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -qq && apt-get dist-upgrade -y && \
-    apt-get install wget curl rsync build-essential \
+    apt-get install wget curl rsync build-essential aptitude \
         libffi4-dev libbz2-dev zlib1g-dev libreadline5-dev \
         libncurses5-dev libssl-dev libperl5.8  libsqlite3-dev libgdbm-dev -y && \
     wget http://old-releases.ubuntu.com/ubuntu/pool/main/c/ca-certificates/ca-certificates_20141019ubuntu0.10.04.1_all.deb && \
