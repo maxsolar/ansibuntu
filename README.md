@@ -1,4 +1,5 @@
 # How to use Ansibuntu
+Ansibuntu contains various Ubuntu which was pre-installed Ansible. 
 To use Ansibuntu as base image, just add line below in the Dockerfile:
 ```
 FROM maxsolar/ansibuntu-xenial
@@ -18,7 +19,6 @@ Ansibuntu is for pre-installed ansible Ubuntu LTS. Supported OS are:
 * 12.04 (precise)
 * 10.04 (lucid)
 *  8.04 (hardy)
-Ansibuntu is the best envronment if you want to build customised Docker image by leveraging Ansible.
 
 # Ansible Version
 Ansible version is 2.2.1.0 for all OSes. Will update Ansible version if there are security/feature updates in the future, but it may not be very frequently.
