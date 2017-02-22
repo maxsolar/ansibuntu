@@ -1,17 +1,15 @@
 FROM maxsolar/ubuntu-lucid
 MAINTAINER Jim T. Tang<maxubuntu@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update -qq && apt-get dist-upgrade -y && \
-    apt-get install wget curl rsync aptitude build-essential ca-certificates \
+RUN apt-get install wget curl rsync aptitude build-essential ca-certificates \
         libffi-dev  libbz2-dev zlib1g-dev libreadline5-dev python-software-properties \
         libncurses5-dev libssl-dev libperl5.10 libsqlite3-dev libgdbm-dev -y
 
 
 
 ## install openssl 1.0.2g
-RUN wget -q https://www.openssl.org/source/old/1.0.2/openssl-1.0.2g.tar.gz -O - | tar zxvf - \
-    cd openssl-1.0.2g; ./config shared && make depend && make && echo make test && make install; \
+RUN wget -q https://www.openssl.org/source/old/1.0.2/openssl-1.0.2g.tar.gz -O - | tar zxvf - && \
+    cd openssl-1.0.2g; ./config shared && make depend && make && echo make test && make install && \
     rm -rf /usr/local/ssl/man; \
     cp /usr/local/ssl/bin/* /usr/local/bin/; \
     rsync -av /usr/local/ssl/include/openssl/ /usr/include/openssl/; \
@@ -22,18 +20,19 @@ RUN wget -q https://www.openssl.org/source/old/1.0.2/openssl-1.0.2g.tar.gz -O - 
     cd -; rm -rf openssl-1.0.2g
 
 ## install Python 2.7.10
-RUN wget -q https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz -O - | tar zxvf -; \
+RUN wget -q https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz -O - | tar zxvf - && \
     cd Python-2.7.10 && ./configure \
             --enable-shared     \
             --with-ensurepip=yes \
-            --enable-unicode=ucs4 && make && echo make -k test && make install && \
+            --enable-unicode=ucs4 && \
+    make && echo make -k test && make install && \
     cp -a /usr/local/lib/libpython* /usr/lib/; \
     cd -; rm -rf Python-2.7.10
 
 ## install Ansible 2.2.1.0
-RUN pip install -U pip simplejson; \
-    wget -q http://releases.ansible.com/ansible/ansible-2.2.1.0.tar.gz -O - | tar zxvf - ; \
-    cd ansible-2.2.1.0 && make && make install; \
+RUN pip install -U pip six requests[security] simplejson && \
+    wget -q http://releases.ansible.com/ansible/ansible-2.2.1.0.tar.gz -O- | tar zxvf - && \
+    cd ansible-2.2.1.0 && make && make install && \
     cd -; rm -rf ansible-2.2.1.0; \
     mkdir /etc/ansible; echo 'localhost' > /etc/ansible/hosts; \
     apt-get clean all && apt-get autoremove -y
