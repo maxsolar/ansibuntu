@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-MAINTAINER Jim T. Tang<maxubuntu@gmail.com>
+LABEL MAINTAINER='Jim T. Tang<maxubuntu@gmail.com>'
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -qq && apt-get dist-upgrade -y && \
     apt-get install aptitude software-properties-common wget curl python-pip python-dev libffi-dev libssl-dev -y && \

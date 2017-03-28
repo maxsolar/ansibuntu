@@ -1,5 +1,5 @@
 FROM maxsolar/ubuntu-hardy
-MAINTAINER Jim T. Tang<maxubuntu@gmail.com>
+LABEL MAINTAINER='Jim T. Tang<maxubuntu@gmail.com>'
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -qq && apt-get dist-upgrade -y && \
     apt-get install wget curl rsync build-essential aptitude \
