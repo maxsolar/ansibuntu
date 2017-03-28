@@ -12,7 +12,6 @@ RUN wget -q http://releases.ansible.com/ansible/ansible-2.3.0.0-0.2.rc2.tar.gz -
        echo "make install..."; make install >/dev/null && \
        mkdir /etc/ansible; echo 'localhost' > /etc/ansible/hosts; \
     cd -; rm -rvf ansible-2.3.0.0; \    
-    apt-get clean all && apt-get autoremove -y && \
-    echo 'localhost' > /etc/ansible/hosts
+    apt-get clean all && apt-get autoremove -y 
 
 CMD ["/bin/bash"]

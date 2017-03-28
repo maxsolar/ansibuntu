@@ -23,19 +23,19 @@ RUN wget -q https://www.openssl.org/source/old/1.0.2/openssl-1.0.2g.tar.gz -O - 
         rsync -av /usr/local/ssl/misc/ /usr/lib/ssl/misc/&& \
         cp -a /usr/local/ssl/lib/libcrypt* /usr/lib/&& \
         cp -a /usr/local/ssl/lib/libssl* /usr/lib/&& \
-    cd -; rm -rvf openssl-1.0.2g
+    cd -; rm -rf openssl-1.0.2g
 
 ## install Python 2.7.10
 RUN wget -q https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz -O - | tar zxf - && \
     cd Python-2.7.10 && echo "configure... "; \
-       ./configure --enable-share --with-ensurepip=yes --enable-unicode=ucs4 >/dev/null && \
+       ./configure --enable-shared --with-ensurepip=yes --enable-unicode=ucs4 >/dev/null && \
        echo "make..."; make >/dev/null && \
        echo "make install..."; make install >/dev/null && \
        cp -a /usr/local/lib/libpython* /usr/lib/&& \
-    cd -; rm -rvf Python-2.7.10
+    cd -; rm -rf Python-2.7.10
 
 ## install Ansible 2.3.0.0
-RUN pip install -U pip && /usr/local/bin/pip install six requests[security] simplejson && \
+RUN pip install -U pip && /usr/local/bin/pip install six requests[security] simplejson pyparsing appdirs && \
     wget -q http://releases.ansible.com/ansible/ansible-2.3.0.0-0.2.rc2.tar.gz -O- | tar zxf - && \
     cd ansible-2.3.0.0 && echo "make..."; make >/dev/null && \
        echo "make install..."; make install >/dev/null && \
