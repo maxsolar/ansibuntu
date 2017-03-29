@@ -1,7 +1,6 @@
 FROM maxsolar/ubuntu-hardy
 LABEL MAINTAINER='Jim T. Tang<maxubuntu@gmail.com>'
 ENV DEBIAN_FRONTEND noninteractive
-RUN for i in hardy hardy-updates hardy-security; do echo deb http://provision.htc.com/old_ubuntu $i main restricted universe multiverse; done > /etc/apt/sources.list
 RUN apt-get update -qq && apt-get dist-upgrade -y && \
     apt-get install wget curl rsync build-essential aptitude \
         libffi4-dev libbz2-dev zlib1g-dev libreadline5-dev \
@@ -34,9 +33,9 @@ RUN wget -q https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz -O - | ta
        cp -a /usr/local/lib/libpython* /usr/lib/&& \
     cd -; rm -rf Python-2.7.10
 
-## install Ansible 2.3.0.0
+### install Ansible 2.3.0.0
 RUN pip install -U pip && /usr/local/bin/pip install six requests[security] simplejson pyparsing appdirs && \
-    wget -q http://releases.ansible.com/ansible/ansible-2.3.0.0-0.2.rc2.tar.gz -O- | tar zxf - && \
+    wget -q http://releases.ansible.com/ansible/ansible-2.0.0.2.tar.gz -O- | tar zxf - && \
     cd ansible-2.3.0.0 && echo "make..."; make >/dev/null && \
        echo "make install..."; make install >/dev/null && \
        mkdir /etc/ansible; echo 'localhost' > /etc/ansible/hosts; \

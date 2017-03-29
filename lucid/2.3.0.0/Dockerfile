@@ -1,7 +1,6 @@
 FROM maxsolar/ubuntu-lucid
 LABEL MAINTAINER='Jim T. Tang<maxubuntu@gmail.com>'
 ENV DEBIAN_FRONTEND noninteractive
-RUN for i in lucid lucid-updates lucid-security; do echo deb http://provision.htc.com/old_ubuntu $i main restricted universe multiverse; done > /etc/apt/sources.list
 RUN apt-get update -qq && apt-get dist-upgrade -y && \
     apt-get install wget curl rsync aptitude build-essential ca-certificates \
     libffi-dev libyaml-dev libbz2-dev zlib1g-dev libreadline5-dev python-software-properties \

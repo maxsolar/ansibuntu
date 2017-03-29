@@ -1,7 +1,6 @@
 FROM maxsolar/ubuntu-hardy
 LABEL MAINTAINER='Jim T. Tang<maxubuntu@gmail.com>'
 ENV DEBIAN_FRONTEND noninteractive
-RUN for i in hardy hardy-updates hardy-security; do echo deb http://provision.htc.com/old_ubuntu $i main restricted universe multiverse; done > /etc/apt/sources.list
 RUN apt-get update -qq && apt-get dist-upgrade -y && \
     apt-get install wget curl rsync build-essential aptitude \
         libffi4-dev libbz2-dev zlib1g-dev libreadline5-dev \
