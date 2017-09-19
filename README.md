@@ -8,7 +8,7 @@ FROM maxsolar/ansibuntu-xenial
 or you can specify a version for tag:
 
 ```
-FROM maxsolar/ansibuntu-xenial:2.2.2.0
+FROM maxsolar/ansibuntu-xenial:2.4.0.0
 ```
 
 # How to run Ansibuntu
@@ -22,12 +22,10 @@ and you'll get into Ubuntu 16.04 with ansible environment.
 Ansibuntu is for pre-installed ansible Ubuntu LTS. Supported OS are:
 * 16.04 (xenial)
 * 14.04 (trusty)
-* 12.04 (precise)
-* 10.04 (lucid)
-*  8.04 (hardy)
 
 # Available Ansible Versions
 * 2.2.2.0
 * 2.3.0.0
+* 2.4.0.0
 
 Any comments please mail me: maxubuntu at gmail dot com.
