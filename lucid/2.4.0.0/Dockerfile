@@ -34,7 +34,7 @@ RUN wget -q https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz -O - | ta
 ## install Ansible 2.4.0.0
 RUN pip install ansible==2.4.0.0 && \
     mkdir /etc/ansible; echo '[local]' > /etc/ansible/hosts; \
-    echo '127.0.0.1' >> /etc/ansible/hosts; \
+    echo '127.0.0.1 ansible_python_interpreter=/usr/local/bin/python' >> /etc/ansible/hosts; \
     apt-get clean all && apt-get autoremove -y
 
 CMD ["/bin/bash"]
