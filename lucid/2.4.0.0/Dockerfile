@@ -11,7 +11,7 @@ RUN for i in lucid lucid-updates lucid-security; do echo deb http://old-releases
 RUN wget -q https://www.openssl.org/source/old/1.0.2/openssl-1.0.2g.tar.gz -O - | tar zxf - && \
     cd openssl-1.0.2g; echo "config shared..."; ./config shared >/dev/null && \
         echo -n "make depend..."; make depend >/dev/null && echo done && \
-        echo -n "make..."; make >/dev/null && echo done && \
+        echo "make..."; make >/dev/null && echo done && \
         echo -n "make install..."; make install >/dev/null && echo done && \
         rm -rf /usr/local/ssl/man && \
         cp /usr/local/ssl/bin/* /usr/local/bin/ && \
@@ -31,10 +31,10 @@ RUN wget -q https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz -O - | ta
        cp -a /usr/local/lib/libpython* /usr/lib/ && \
     cd -; rm -rf Python-2.7.10
 
-## install Ansible 2.4.0.0
-RUN pip install ansible==2.4.0.0 && \
-    mkdir /etc/ansible; echo '[local]' > /etc/ansible/hosts; \
+# install Ansible 2.4.0.0
+RUN mkdir /etc/ansible; echo '[local]' > /etc/ansible/hosts; \
     echo '127.0.0.1 ansible_python_interpreter=/usr/local/bin/python' >> /etc/ansible/hosts; \
+    pip install -U setuptools && pip install ansible==2.4.0.0 ansible-container==0.9.2 && \
     apt-get clean all && apt-get autoremove -y
 
 CMD ["/bin/bash"]
