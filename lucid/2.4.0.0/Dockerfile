@@ -3,7 +3,7 @@ LABEL MAINTAINER='Jim T. Tang<maxubuntu@gmail.com>'
 ENV DEBIAN_FRONTEND noninteractive
 RUN for i in lucid lucid-updates lucid-security; do echo deb http://old-releases.ubuntu.com/ubuntu $i main restricted universe multiverse; done > /etc/apt/sources.list; \
     apt-get update -qq && apt-get dist-upgrade -y && \
-    apt-get install wget curl rsync aptitude build-essential ca-certificates \
+    apt-get install wget curl rsync aptitude build-essential ca-certificates python-apt \
     file libffi-dev libyaml-dev libbz2-dev zlib1g-dev libreadline5-dev \
     libncurses5-dev libssl-dev libperl5.10 libsqlite3-dev libyaml-dev libgdbm-dev -y
 
@@ -34,7 +34,7 @@ RUN wget -q https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz -O - | ta
 # install Ansible 2.4.0.0
 RUN mkdir /etc/ansible; echo '[local]' > /etc/ansible/hosts; \
     echo '127.0.0.1 ansible_python_interpreter=/usr/local/bin/python' >> /etc/ansible/hosts; \
-    pip install -U setuptools pip && /usr/local/bin/pip install ansible==2.4.0.0 ansible-container==0.9.2 python-apt && \
+    pip install -U setuptools pip && /usr/local/bin/pip install ansible==2.4.0.0 ansible-container==0.9.2 && \
     apt-get clean all && apt-get autoremove -y
 
 CMD ["/bin/bash"]
