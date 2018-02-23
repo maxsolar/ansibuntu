@@ -1,7 +1,7 @@
 FROM ubuntu:lucid
 LABEL MAINTAINER='Jim T. Tang<maxubuntu@gmail.com>'
 ENV DEBIAN_FRONTEND noninteractive
-RUN for i in lucid lucid-updates lucid-security; do echo deb http://old-releases.ubuntu.com/ubuntu $i main restricted universe multiverse; done > /etc/apt/sources.list; \
+RUN for i in lucid lucid-updates lucid-security; do echo deb http://masd-provision.htc.com/old_ubuntu $i main restricted universe multiverse; done > /etc/apt/sources.list; \
     apt-get update -qq && apt-get dist-upgrade -y && \
     apt-get install wget curl rsync aptitude build-essential ca-certificates \
     file libffi-dev libyaml-dev libbz2-dev zlib1g-dev libreadline5-dev \
@@ -32,9 +32,8 @@ RUN wget -q https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz -O - | ta
     cd -; rm -rf Python-2.7.10
 
 ## install Ansible 2.4.0.0
-RUN pip install ansible==2.4.0.0 && \
-    mkdir /etc/ansible; echo '[local]' > /etc/ansible/hosts; \
-    echo '127.0.0.1 ansible_python_interpreter=/usr/local/bin/python' >> /etc/ansible/hosts; \
+RUN mkdir /etc/ansible; echo '[local]' > /etc/ansible/hosts; \
+    echo '127.0.0.1 ansible_python_interpreter=/usr/local/bin/python' >> /etc/ansible/hosts;  pip install ansible==2.4.0.0 && \
     apt-get clean all && apt-get autoremove -y
 
 CMD ["/bin/bash"]
